@@ -1,0 +1,22 @@
+.minimal-list {
+  list-style: none;
+  padding: 0;
+}
+
+.minimal-list-item {
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.minimal-list-date {
+  color: var(--secondary);
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+.minimal-list-title {
+  font-size: 1.1rem;
+  text-decoration: none;
+}

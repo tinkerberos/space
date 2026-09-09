@@ -1,0 +1,59 @@
+<canvas id="starfield"
+  style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.15;"></canvas>
+<script>
+  (function () {
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+
+    let w, h;
+    const stars = [];
+    const numStars = 2000;
+
+    function init() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+      stars.length = 0;
+      for (let i = 0; i < numStars; i++) {
+        stars.push({
+          x: Math.random() * w * 2 - w,
+          y: Math.random() * h * 2 - h,
+          z: Math.random() * w
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+
+      // check PaperMod's theme state to adapt star colors
+      const isDark = document.documentElement.dataset.theme === "dark" ||
+        (!document.documentElement.dataset.theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      ctx.fillStyle = isDark ? '#fff' : '#000';
+
+      for (let i = 0; i < numStars; i++) {
+        let star = stars[i];
+        star.z -= 2.0; // speed of moving through space
+
+        if (star.z <= 0) {
+          star.z = w;
+          star.x = Math.random() * w * 2 - w;
+          star.y = Math.random() * h * 2 - h;
+        }
+
+        const x = (star.x / star.z) * w + w / 2;
+        const y = (star.y / star.z) * w + h / 2;
+        const s = (w / star.z) * 1.2;
+
+        // fillRect is computationally cheaper than drawing arcs
+        if (x > 0 && x < w && y > 0 && y < h && s < 4) {
+          ctx.fillRect(x, y, s, s);
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+
+    init();
+    draw();
+    window.addEventListener('resize', init);
+  })();
+</script>

@@ -1,0 +1,7 @@
+:root {
+  --custom-light-bg: #fff7e3;
+
+  --theme: var(--custom-light-bg);
+  --entry: var(--custom-light-bg);
+  --code-bg: var(--custom-light-bg);
+}

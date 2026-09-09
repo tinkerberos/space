@@ -1,0 +1,8 @@
+{{- /*
+Overrides: themes/PaperMod/layouts/_partials/extend_footer.html
+Purpose: Injects custom HTML/scripts at the very end of the body for every page.
+*/ -}}
+
+{{ if .IsHome }}
+{{ partial "starfield.html" . }}
+{{ end }}

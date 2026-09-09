@@ -1,0 +1,7 @@
+{{- /* Custom shortcode to create block-level spoilers (collapsible details) */ -}}
+<details class="spoiler-block">
+  <summary>{{ .Get 0 | default "Spoiler" }}</summary>
+  <div class="details-content">
+    {{ .Inner | markdownify }}
+  </div>
+</details>

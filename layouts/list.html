@@ -1,0 +1,25 @@
+{{- /* Overrides default list layout to use a custom minimal list style */ -}}
+{{- define "main" }}
+<header class="page-header">
+  <h1>
+    {{- if .IsHome -}}
+    /
+    {{- else -}}
+    {{ .Title }}
+    {{- end -}}
+  </h1>
+</header>
+
+<ul class="minimal-list">
+  {{- $pages := .Pages }}
+  {{- if .IsHome }}
+  {{- $pages = site.RegularPages }}
+  {{- end }}
+  {{- range $pages }}
+  <li class="minimal-list-item">
+    <time class="minimal-list-date" datetime="{{ .Date.Format " 2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+    <a class="minimal-list-title" href="{{ .Permalink }}">{{ .Title }}</a>
+  </li>
+  {{- end }}
+</ul>
+{{- end }}

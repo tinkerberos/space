@@ -1,0 +1,5 @@
+{{- /* Overrides default markdown link rendering to open external links in a new tab */ -}}
+<a href="{{ .Destination | safeURL }}" {{- with .Title }} title="{{ . }}" {{- end -}} {{- if strings.HasPrefix
+  .Destination "http" }} target="_blank" rel="noopener noreferrer" {{- end -}}>
+  {{- .Text | safeHTML -}}
+</a>

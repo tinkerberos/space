@@ -1,0 +1,2 @@
+{{- /* Custom shortcode to create inline text spoilers that reveal on click */ -}}
+<span class="spoiler" title="Spoiler" tabindex="0" onclick="this.classList.toggle('revealed')">{{ .Inner | markdownify | replaceRE "^<p>" "" | replaceRE "</p>\n?$" "" | safeHTML }}</span>
